@@ -1,8 +1,14 @@
+import React from 'react';
 import Loadable from 'react-loadable';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import LoadingBar from '@/components/LoadingBar';
 
-export const lazy = url =>
+export default url =>
   Loadable({
-    loader: () => import(url),
-    loading: LoadingSpinner
+    loader: () => import(`@/${url}.js`),
+    loading(props) {
+      if (props.error) {
+        throw props.error;
+      }
+      return <LoadingBar />;
+    }
   });

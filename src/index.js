@@ -1,24 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import configureStore from './store/index';
+import { Provider } from 'mobx-react';
+import { BrowserRouter } from 'react-router-dom';
+import appStore from './store/index';
 import ErrorBoundary from './components/ErrorBoundary';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-const initialState = window.initialReduxState;
-const store = configureStore(initialState);
+import renderRoutes from './utils/renderRoutes';
+import routes from './routes';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider {...appStore}>
     <ErrorBoundary>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={App} />
-        </Switch>
-      </BrowserRouter>
+      <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
     </ErrorBoundary>
   </Provider>,
   document.getElementById('root')

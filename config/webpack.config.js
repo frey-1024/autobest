@@ -291,7 +291,7 @@ module.exports = function(webpackEnv) {
               options: {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
-                fix: true
+                emitWarning: true
               },
               loader: require.resolve('eslint-loader')
             }
@@ -484,7 +484,7 @@ module.exports = function(webpackEnv) {
           // Required - The path to the webpack-outputted app to prerender.
           staticDir: paths.appBuild,
           // Required - Routes to render.
-          routes: ['/']
+          routes: ['/', '/test']
         }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
