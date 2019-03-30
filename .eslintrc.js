@@ -27,6 +27,7 @@ module.exports = {
         "singleQuote": true
       }
     ],
+    'no-useless-escape': 0,
     'generator-star-spacing': 'off',
   }
 };
