@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import htmlStr from '../../../../templete/header.html';
+// import htmlStr from '../../../../common/header.html';
 
 @inject('userInfo')
 @observer
@@ -15,11 +15,11 @@ export default class Test extends React.Component {
     console.log(this.props);
     console.log(this.props.userInfo.info.name);
     console.log(this.props.userInfo.aa());
-    console.log(htmlStr);
+    // console.log(htmlStr);
     return (
       <div>
         <span>test</span>
-        <div dangerouslySetInnerHTML={{ __html: htmlStr }} />
+        {/* <div dangerouslySetInnerHTML={{ __html: htmlStr }} /> */}
       </div>
     );
   }

@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -39,7 +37,7 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
-
+const routes = require('./prerenderRoutes');
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -488,7 +486,10 @@ module.exports = function(webpackEnv) {
           // Required - The path to the webpack-outputted app to prerender.
           staticDir: paths.appBuild,
           // Required - Routes to render.
-          routes: ['/', '/test']
+          routes: routes,
+          renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
+            renderAfterTime: 5000
+          })
         }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.

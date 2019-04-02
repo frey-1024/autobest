@@ -1,9 +1,9 @@
 import lazy from './utils/lazy';
-import TestRoutes from '@/modules/test/routes';
-
+// import testRoutes from '@/modules/test/routes';
+import securityRoutes from '@/modules/security/routes';
 export default [
   {
     component: lazy('App'),
-    routes: [...TestRoutes]
+    routes: [...securityRoutes]
   }
 ];

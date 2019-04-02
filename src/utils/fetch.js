@@ -1,15 +1,9 @@
-import Vue from 'vue';
 import { objMerge, isEmptyObject, isUndef } from './string';
 // 接口基本链接
-const path = process.env.API;
-
-function showMessage(msg) {
-  Vue.prototype.$zkMessage.danger(msg);
-}
+const path = process.env.ApiServiceUrl;
 
 function handleFetch(url, options) {
-  url = path + url;
-  return fetch(url, options).then(res => res.json());
+  return fetch(path + url, options).then(res => res.json());
 }
 
 /**
@@ -60,30 +54,31 @@ function handleUrl(url, params = {}) {
 
 /**
  * 处理await 写法
- * @param method
- * @param args
+ * @param url
+ * @param options
  */
-function handleAwait(method, ...args) {
-  return this[method](...args)
+function intercept(url, options) {
+  return handleFetch(url, options)
     .then(data => {
-      if (data.code === 0) {
-        return data.data;
-      }
-      showMessage(data.msg || '接口请求错误。');
-      return 'e';
+      console.log(data);
+      // if (data.code === 0) {
+      //   return data.data;
+      // }
+      return data;
     })
     .catch(e => {
-      showMessage(e.msg || '接口请求错误。');
+      throw Error(e.message || '接口请求错误。');
     });
 }
 function getFetchOpts(options) {
   // 合并请求配置
   return objMerge(
     {
-      cache: 'no-cache',
+      cache: 'no-store', // 解决IE11下缓存问题
       credentials: 'same-origin',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'If-Modified-Since': '0' // 解决IE11下缓存问题
       },
       mode: 'cors',
       redirect: 'follow',
@@ -93,7 +88,7 @@ function getFetchOpts(options) {
     true
   );
 }
-export function zkFetch(url, options = {}) {
+export default function ajax(url, options = {}) {
   const initOptions = getFetchOpts(options);
   return {
     /**
@@ -101,7 +96,7 @@ export function zkFetch(url, options = {}) {
      * @param params
      */
     get(params) {
-      return handleFetch(handleUrl(url, params), { ...initOptions, method: 'get' });
+      return intercept(handleUrl(url, params), { ...initOptions, method: 'get' });
     },
     /**
      * post 接口
@@ -109,7 +104,7 @@ export function zkFetch(url, options = {}) {
      * @param params
      */
     post(data, params) {
-      return handleFetch(handleUrl(url, params), {
+      return intercept(handleUrl(url, params), {
         ...initOptions,
         method: 'post',
         body: JSON.stringify(data)
@@ -120,7 +115,7 @@ export function zkFetch(url, options = {}) {
      * @param params
      */
     delete(params) {
-      return handleFetch(handleUrl(url, params), { ...initOptions, method: 'delete' });
+      return intercept(handleUrl(url, params), { ...initOptions, method: 'delete' });
     },
     /**
      * 修改方法
@@ -128,30 +123,11 @@ export function zkFetch(url, options = {}) {
      * @param params
      */
     put(data, params) {
-      return handleFetch(handleUrl(url, params), {
+      return intercept(handleUrl(url, params), {
         ...initOptions,
         method: 'put',
         body: JSON.stringify(data)
       });
-    },
-    // 下面这些方法是对上面方法的扩展，写法更洁净，并提供错误提示
-    /* async fn() {
-        const data = await api.postAwait({
-          'name': '',
-          'password': ''
-        });
-      }, */
-    getAwait(params) {
-      return handleAwait.call(this, 'get', params);
-    },
-    postAwait(data, params) {
-      return handleAwait.call(this, 'post', data, params);
-    },
-    deleteAwait(params) {
-      return handleAwait.call(this, 'delete', params);
-    },
-    putAwait(data, params) {
-      return handleAwait.call(this, 'put', data, params);
     }
   };
 }

@@ -4,7 +4,7 @@
  * @returns {boolean}
  */
 
-export function isBlank (val) {
+export function isBlank(val) {
   return isUndef(val) || val === '' || val.toString().trim() === '';
 }
 
@@ -19,7 +19,7 @@ export function isUndef(val) {
   return val === null || typeof val === 'undefined';
 }
 
-export function isEmptyObject (obj) {
+export function isEmptyObject(obj) {
   return !obj || Object.keys(obj).length <= 0;
 }
 
@@ -37,7 +37,7 @@ export function objMerge(obj1 = {}, obj2 = {}, isDepth) {
   }
   const result = { ...obj1 };
   let val;
-  Object.keys(obj2).forEach((key) => {
+  Object.keys(obj2).forEach(key => {
     val = obj2[key];
     if (isObject(val) && isObject(result[key])) {
       result[key] = { ...result[key], ...val };
