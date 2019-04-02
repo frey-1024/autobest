@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
+import { setCookie } from '@/utils/cookies';
 import { login } from '../server';
 
 @inject('rootStore')
@@ -11,9 +12,6 @@ export default class LoginAndRegister extends Component {
       loginInfo: {}
     };
   }
-  componentDidMount() {
-    this.userLogin();
-  }
 
   userLogin = async () => {
     const data = {
@@ -24,8 +22,10 @@ export default class LoginAndRegister extends Component {
     this.setState({
       loginInfo
     });
+    setCookie('loginInfo', loginInfo);
   };
   render() {
+    console.log(this.props.rootStore.userStore.userInfo.token);
     return (
       <div>
         login user is {this.state.loginInfo.adminName}

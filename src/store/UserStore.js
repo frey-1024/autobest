@@ -1,12 +1,15 @@
 import { observable } from 'mobx';
-// import {  } from '';
+import { getCookie } from '@/utils/cookies';
 
 export default class UserStore {
+  @observable
+  userInfo = {};
+
   constructor(rootStore) {
     this.rootStore = rootStore;
+    const userInfo = getCookie('loginInfo');
+    this.userInfo = userInfo || {};
   }
-  @observable
-  info = { name: 'gyp' };
 
   // fetchProjects = flow(function*() {
   //   this.githubProjects = [];
