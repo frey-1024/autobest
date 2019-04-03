@@ -7,6 +7,8 @@ import appStore from './store/index';
 import ErrorBoundary from './components/ErrorBoundary';
 import * as serviceWorker from './serviceWorker';
 import renderRoutes from './utils/renderRoutes';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import routes from './routes';
 
 configure({ enforceActions: 'observed' });
@@ -14,7 +16,11 @@ configure({ enforceActions: 'observed' });
 ReactDOM.render(
   <Provider rootStore={appStore}>
     <ErrorBoundary>
-      <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        {renderRoutes(routes)}
+        <Footer />
+      </BrowserRouter>
     </ErrorBoundary>
   </Provider>,
   document.getElementById('root')

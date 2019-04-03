@@ -1,5 +1,5 @@
-import { observable } from 'mobx';
-import { getCookie } from '@/utils/cookies';
+import { observable, action } from 'mobx';
+import { getCookie, setCookie } from '@/utils/cookies';
 
 export default class UserStore {
   @observable
@@ -10,7 +10,11 @@ export default class UserStore {
     const userInfo = getCookie('loginInfo');
     this.userInfo = userInfo || {};
   }
-
+  @action
+  setUserInfo(info = {}) {
+    setCookie('loginInfo', info);
+    this.userInfo = info;
+  }
   // fetchProjects = flow(function*() {
   //   this.githubProjects = [];
   //   this.state = 'pending';

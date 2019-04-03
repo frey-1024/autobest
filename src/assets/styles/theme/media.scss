@@ -1,0 +1,22 @@
+.pc-show{
+  display: block;
+}
+.mobile-show{
+  display: none;
+}
+.container{
+  width: 992px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 767px){
+  .pc-show{
+    display: none;
+  }
+  .mobile-show{
+    display: block;
+  }
+  .container{
+    width: 100%;
+  }
+}
