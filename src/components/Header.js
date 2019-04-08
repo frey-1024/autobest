@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import htmlStr from '../../common/header/templete.html';
-import '../../common/header/style.css';
 import { HandleHeader } from '../../common/header/script.js';
 
 @inject('rootStore')

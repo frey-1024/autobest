@@ -1,11 +1,21 @@
 <header class="header">
   <div class="header-container container">
-    <div class="header-top flex-row col-bottom">
-      <a class="logo-wrap" href="/">
-        <img src="https://www.subarupartsdeal.com/frontendresp/images/SPD/header_logo.png" alt="SubaruPartsDeal.com - Genuine Subaru Parts">
-        <img src="https://www.subarupartsdeal.com/frontendresp/images/SPD/header_logo_by.png" alt="by Genuine Parts Group, Inc.">
-      </a>
-      <div class="customer-support-wrap">
+    <div class="header-top flex-row">
+      <div class="logo-wrap flex-row row-left">
+        <span class="header-menu-wrap flex-row row-left mobile-show-flex">
+          <span id="header-menu"></span>
+          <span class="menu-divider"></span>
+        </span>
+        <a class="logo-wrap" href="/">
+          <img style="max-width: 100%" src="https://www.subarupartsdeal.com/frontendresp/images/SPD/header_logo.png" alt="SubaruPartsDeal.com - Genuine Subaru Parts">
+          <img class="pc-show" src="https://www.subarupartsdeal.com/frontendresp/images/SPD/header_logo_by.png" alt="by Genuine Parts Group, Inc.">
+        </a>
+      </div>
+      <div class="contact-wrap flex-row row-right mobile-show-flex">
+        <span id="contact-btn"></span>
+        <span class="cart-icon"><em class="goods-number">1</em></span>
+      </div>
+      <div class="customer-support-wrap pc-show">
         <span class="customer-support">Customer Support:</span>
         <a class="live-chat" data-plan="5000001">
           Live Chat
@@ -14,7 +24,7 @@
         <a class="tel" href="tel:1-888-503-5191">1-888-503-5191</a>
       </div>
     </div>
-    <div class="header-nav flex-row">
+    <div class="header-nav flex-row pc-show-flex">
       <ul class="left-nav flex-row row-left">
         <li class="single"><a href="/" class="e head_link A_h_hdl_subaru">Subaru Parts</a></li>
         <li><a href="/subaru-accessories.html" class="e head_link A_h_hdl_subaru">Subaru Accessories</a></li>
@@ -32,18 +42,45 @@
         <input class="form-control" type="text" placeholder="Search by Part Number or Keywords" maxlength="250" autocomplete="off"/>
         <span class="search-btn"></span>
       </div>
-      <a class="cart-wrap flex-row row-left col-center" href="javascript;">
+      <a class="cart-wrap flex-row row-left col-center pc-show-flex" href="javascript:;">
         <span class="cart-icon"><em class="goods-number">1</em></span>
         <b class="cart-text">My Cart</b>
       </a>
     </div>
   </div>
-
 </header>
 
 <div class="mobile-show" id="header-drawer">
   <div class="drawer-mask"></div>
   <div id="drawer-wrap">
-    1234567890qwertyuiop
+    <div class="flex-row row-right"><span id="close-drawer">×</span></div>
+    <ul class="nav-list contact-list">
+      <li><a class="live-chat" href="javascript:void(0);" rel="nofollow" data-plan="5000001">Live Chat</a></li>
+      <li><a class="tel" href="tel:1-888-503-5191">1-888-503-5191</a></li>
+    </ul>
+    <ul class="nav-list channel-list">
+      <li><a href="/">Subaru Parts</a></li>
+      <li><a href="/subaru-accessories.html">Subaru Accessories</a></li>
+    </ul>
+    <ul class="nav-list account-list">
+      <li><a href="https://www.subarupartsdeal.com/online/Page_Customer/login.aspx" rel="nofollow">Login/Register</a></li>
+      <li><a href="https://www.subarupartsdeal.com/online/Page_Customer/Dashboard.aspx" rel="nofollow">My Account</a></li>
+      <li><a href="https://www.subarupartsdeal.com/online/Page_Customer/track_order_login.aspx" rel="nofollow">Track Order</a></li>
+      <li><a href="/service/subaru-parts-help-center.html">Help Center</a></li>
+      <li><a href="https://www.subarupartsdeal.com/online/Page_Customer/service_contact_us.aspx">Contact Us</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="mobile-show" id="header-popover">
+  <div class="popover-mask"></div>
+  <div id="popover-wrap">
+    <div id="popover-arrow"></div>
+    <div class="flex-row row-right"><span id="close-popover">×</span></div>
+    <ul class="nav-list contact-list">
+      <li><a class="live-chat" href="javascript:void(0);" rel="nofollow" data-plan="5000001">Live Chat</a></li>
+      <li><a class="tel" href="tel:1-888-503-5191">1-888-503-5191</a></li>
+      <li class="contact-us"><a href="https://www.subarupartsdeal.com/online/Page_Customer/service_contact_us.aspx">Contact Us</a></li>
+    </ul>
   </div>
 </div>

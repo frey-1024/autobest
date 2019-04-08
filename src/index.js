@@ -10,6 +10,9 @@ import renderRoutes from './utils/renderRoutes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import routes from './routes';
+import '../common/header/style.css';
+import '../common/footer/style.css';
+import '@/assets/styles/app.scss';
 
 configure({ enforceActions: 'observed' });
 

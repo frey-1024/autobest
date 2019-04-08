@@ -1,20 +1,27 @@
 .pc-show{
-  display: block;
+  display: initial !important;
 }
-.mobile-show{
-  display: none;
+.mobile-show, .mobile-show-flex{
+  display: none !important;
+}
+.pc-show-flex{
+  display: flex !important;
 }
 .container{
   width: 992px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
 @media only screen and (max-width: 767px){
-  .pc-show{
-    display: none;
+  .pc-show, .pc-show-flex{
+    display: none !important;
   }
   .mobile-show{
-    display: block;
+    display: initial !important;
+  }
+  .mobile-show-flex{
+    display: flex !important;
   }
   .container{
     width: 100%;

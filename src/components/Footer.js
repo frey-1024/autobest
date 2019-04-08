@@ -1,7 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import htmlStr from '../../common/footer/templete.html';
-import '../../common/footer/style.css';
 import { initFooter } from '../../common/footer/script.js';
 
 @inject('rootStore')
